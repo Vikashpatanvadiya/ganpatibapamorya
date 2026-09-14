@@ -1,0 +1,21 @@
+{
+  "name": "ganpati-bappa",
+  "version": "1.0.0",
+  "description": "Ganpati aartis and bhajans that play on loop during Ganesh Chaturthi",
+  "type": "module",
+  "scripts": {
+    "dev": "node tools/serve.mjs",
+    "sync": "node tools/sync-playlist.mjs"
+  },
+  "keywords": [
+    "ganpati",
+    "aarti",
+    "bhajan",
+    "music-player"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@vercel/analytics": "^1.3.1"
+  }
+}
