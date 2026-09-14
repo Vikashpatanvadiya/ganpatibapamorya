@@ -143,7 +143,7 @@ a { color: inherit; touch-action: manipulation; }
   70%, 100% { box-shadow: 0 0 0 7px rgba(111, 220, 140, 0); }
 }
 
-.links { display: flex; gap: 6px; }
+.links { display: flex; gap: 6px; margin-left: auto; }
 
 .links a {
   text-decoration: none;

@@ -33,6 +33,17 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+
+  <!-- Vercel Web Analytics (page views in the Vercel dashboard). Skipped on localhost. -->
+  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    if (!/^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname)) {
+      var va = document.createElement("script");
+      va.defer = true;
+      va.src = "/_vercel/insights/script.js";
+      document.head.appendChild(va);
+    }
+  </script>
 </head>
 <body>
   <div class="bg" aria-hidden="true"><div class="bg-img"></div></div>

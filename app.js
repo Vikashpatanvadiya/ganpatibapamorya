@@ -6,9 +6,9 @@
       spotify: "https://open.spotify.com/playlist/3L4tNm4zVmdT8gRG0yhvNO?si=87815228dbe04802&nd=1&dlsi=d904b0ac7ed3436a",
       ytMusic: "", // add the YT Music playlist URL here; the button hides while empty
     },
-    // Optional: URL returning JSON like {"online": 142} for a real counter.
-    // Left empty, the counter is simulated in the browser.
-    onlineEndpoint: "",
+    // Live "online" counter (api/online.js on Vercel, or tools/serve.mjs locally).
+    // Set to "" to hide the counter.
+    onlineEndpoint: "/api/online",
     // Song covers — each song gets one of these at random (reshuffled on every visit).
     covers: [
       "assets/covers/1.jpg",
@@ -453,28 +453,59 @@
   });
 
   // ---- Online counter -------------------------------------------------------
+  // Real count: this page checks in every 30s; the server counts everyone seen
+  // in the last 90s. Tabs playing in the background keep counting. If the
+  // endpoint isn't reachable the pill hides instead of showing a made-up number.
   function startCounter() {
-    if (CONFIG.onlineEndpoint) {
-      const tick = () =>
-        fetch(CONFIG.onlineEndpoint)
-          .then((r) => r.json())
-          .then((d) => { if (Number.isFinite(d.online)) els.online.textContent = d.online; })
-          .catch(() => {});
-      tick();
-      setInterval(tick, 15000);
+    const pill = els.online.closest(".online");
+    const endpoint = CONFIG.onlineEndpoint;
+    if (!endpoint) {
+      pill.hidden = true;
       return;
     }
-    // Simulated: busier in the morning and evening aarti hours, drifts gently.
-    const h = new Date().getHours();
-    const base = [40, 28, 20, 18, 22, 48, 90, 130, 150, 120, 95, 85, 80, 78, 82, 95, 120, 160, 210, 240, 220, 170, 110, 65][h];
-    let n = Math.round(base * (0.9 + Math.random() * 0.2));
-    const show = () => (els.online.textContent = n);
-    show();
-    (function drift() {
-      n = Math.max(3, n + Math.round((Math.random() - 0.5) * 6 + (base - n) * 0.05));
-      show();
-      setTimeout(drift, 3000 + Math.random() * 5000);
-    })();
+
+    const id = (crypto.randomUUID && crypto.randomUUID()) ||
+      `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 12)}`;
+    let failures = 0;
+    let timer;
+
+    const beat = async () => {
+      clearTimeout(timer);
+      try {
+        const res = await fetch(endpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ id }),
+          cache: "no-store",
+        });
+        const data = await res.json();
+        if (!res.ok || !Number.isFinite(data.online)) throw new Error(data.error || res.status);
+        failures = 0;
+        els.online.textContent = Math.max(1, data.online); // you are always online
+        pill.hidden = false;
+      } catch {
+        failures += 1;
+        if (failures >= 2 || els.online.textContent === "—") pill.hidden = true;
+      }
+      // Back off gently when the endpoint is failing
+      timer = setTimeout(beat, failures ? Math.min(30000 * 2 ** failures, 300000) : 30000);
+    };
+
+    pill.hidden = true; // show once we have a real number
+    beat();
+
+    // Refresh right away when someone comes back to the tab
+    document.addEventListener("visibilitychange", () => {
+      if (document.visibilityState === "visible") beat();
+    });
+    // Leave immediately when the page closes
+    window.addEventListener("pagehide", () => {
+      const payload = new Blob([JSON.stringify({ id, leave: true })], { type: "application/json" });
+      if (!(navigator.sendBeacon && navigator.sendBeacon(endpoint, payload))) {
+        fetch(endpoint, { method: "POST", body: payload, keepalive: true }).catch(() => {});
+      }
+    });
+    window.addEventListener("pageshow", (e) => { if (e.persisted) beat(); }); // back/forward cache
   }
   startCounter();
 })();

@@ -1,0 +1,6 @@
+# Source files the live site doesn't load (compressed copies live in assets/)
+backgroundimage.png
+images/
+tools/
+.claude/
+.DS_Store

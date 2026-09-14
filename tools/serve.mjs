@@ -19,8 +19,36 @@ const types = {
   ".m4a": "audio/mp4",
 };
 
+// Local stand-in for api/online.js (in-memory, same request/response shape).
+const WINDOW_MS = 90_000;
+const seen = new Map();
+function online(req, res) {
+  const reply = (status, data) => {
+    res.writeHead(status, { "Content-Type": "application/json", "Cache-Control": "no-store" });
+    res.end(JSON.stringify(data));
+  };
+  const count = () => {
+    const cutoff = Date.now() - WINDOW_MS;
+    for (const [id, t] of seen) if (t < cutoff) seen.delete(id);
+    return seen.size;
+  };
+  if (req.method === "GET") return reply(200, { online: count() });
+  if (req.method !== "POST") return reply(405, { error: "method not allowed" });
+  let raw = "";
+  req.on("data", (c) => { raw += c; if (raw.length > 1024) req.destroy(); });
+  req.on("end", () => {
+    let body = {};
+    try { body = JSON.parse(raw || "{}"); } catch { /* ignore */ }
+    if (typeof body.id !== "string" || !/^[A-Za-z0-9-]{8,64}$/.test(body.id)) return reply(400, { error: "invalid id" });
+    if (body.leave) seen.delete(body.id);
+    else seen.set(body.id, Date.now());
+    reply(200, { online: count() });
+  });
+}
+
 http
   .createServer((req, res) => {
+    if (req.url.split("?")[0] === "/api/online") return online(req, res);
     let rel;
     try {
       rel = decodeURIComponent(new URL(req.url, "http://x").pathname);

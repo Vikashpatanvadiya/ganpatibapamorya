@@ -1,0 +1,12 @@
+{
+  "name": "ganpatibappamorya",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node tools/serve.mjs",
+    "sync": "node tools/sync-playlist.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
