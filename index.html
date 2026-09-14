@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Ganpati Bappa</title>
+  <meta name="description" content="Ganpati aartis and bhajans that play on loop during Ganesh Chaturthi." />
+  <meta name="theme-color" content="#2a070d" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Bappa" />
+  <meta name="format-detection" content="telephone=no" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Ganpati Bappa" />
+  <meta property="og:title" content="Ganpati Bappa" />
+  <meta property="og:description" content="Ganpati aartis and bhajans that play on loop during Ganesh Chaturthi." />
+  <meta property="og:image" content="/opengraph.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:locale" content="en_IN" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Ganpati Bappa" />
+  <meta name="twitter:description" content="Ganpati aartis and bhajans that play on loop during Ganesh Chaturthi." />
+  <meta name="twitter:image" content="/opengraph.png" />
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐘</text></svg>" />
+  <link rel="preload" as="image" type="image/webp" href="assets/bg-portrait.webp" media="(orientation: portrait)" />
+  <link rel="preload" as="image" type="image/webp" href="assets/bg-wide.webp" media="(orientation: landscape)" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg" aria-hidden="true"><div class="bg-img"></div></div>
+
+  <main class="page">
+    <header class="topbar">
+      <span class="pill online" aria-live="off"><span class="dot" aria-hidden="true"></span><span id="online-count">—</span> online</span>
+      <nav class="links" aria-label="Listen elsewhere">
+        <a class="pill" id="link-spotify" href="#" target="_blank" rel="noopener">Spotify ↗</a>
+        <a class="pill" id="link-ytmusic" href="#" target="_blank" rel="noopener">YT Music ↗</a>
+      </nav>
+    </header>
+
+    <h1 class="title">Ganpati Bappa Morya</h1>
+
+    <div class="spacer" aria-hidden="true"></div>
+
+    <section class="player" aria-label="Now playing">
+      <div class="cats-scroll">
+        <div class="cats" id="cats" role="tablist" aria-label="Playlists"></div>
+      </div>
+      <p class="blurb" id="blurb"></p>
+
+      <div class="now">
+        <div class="art" id="art" aria-hidden="true"></div>
+        <div class="meta">
+          <p class="track-title" id="track-title">—</p>
+          <p class="track-artist" id="track-artist">&nbsp;</p>
+        </div>
+      </div>
+
+      <div class="scrub">
+        <input type="range" id="seek" min="0" max="0" step="0.1" value="0" aria-label="Seek" />
+        <div class="times"><span id="cur">0:00</span> / <span id="dur">0:00</span></div>
+      </div>
+
+      <div class="controls">
+        <button class="ctl" id="prev" type="button" aria-label="Previous track">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h2v14H6zM20 5v14L9 12z"/></svg>
+        </button>
+        <button class="ctl play" id="play" type="button" aria-label="Play">
+          <svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+          <svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>
+        </button>
+        <button class="ctl" id="next" type="button" aria-label="Next track">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 5h2v14h-2zM4 5v14l11-7z"/></svg>
+        </button>
+      </div>
+
+      <p class="status" id="status" role="status"></p>
+
+      <details class="tracklist">
+        <summary>
+          <span id="tracklist-summary">Show all songs</span>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <ol id="tracklist"></ol>
+      </details>
+    </section>
+
+    <footer class="foot">Ganpati Bappa Morya 🙏</footer>
+  </main>
+
+  <audio id="audio" preload="metadata" playsinline></audio>
+
+  <script src="playlist.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
