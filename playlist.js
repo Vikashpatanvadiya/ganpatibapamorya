@@ -43,7 +43,7 @@ window.PLAYLIST = [
     "blurb": "Pandal-hopping energy",
     "folder": "Evening",
     "tracks": [
-      { "file": "Deva Deva - Extended Film VersionBrahmāstraAmitabh BRanbir @aliabhatt@pritam7415 ArijitJonita.mp3", "title": "Deva Deva", "artist": "Arijit Singh · Jonita Gandhi · Brahmāstra" },
+      { "file": "Deva Deva - Extended Film VersionBrahmāstraAmitabh BRanbir @aliabhatt@pritam7415 ArijitJonita.mp3", "title": "Deva Deva", "artist": "Arijit Singh · Jonita Gandhi · Brahmāstra" },
       { "file": "Shambhu Sutaya - Official Music Video  Anybody Can Dance (ABCD)  Ganesh Chaturthi Song  4K Video.mp3", "title": "Shambhu Sutaya", "artist": "ABCD: Any Body Can Dance" },
       { "file": "Sadda Dil Vi Tu (Ga Ga Ga Ganpati) - Any Body Can Dance  Full Video  Ganesh Chaturthi Song  4K.mp3", "title": "Sadda Dil Vi Tu (Ga Ga Ga Ganpati)", "artist": "ABCD: Any Body Can Dance" },
       { "file": "Bappa (Full Video Song) Banjo  Riteish Deshmukh & Nargis Fakhri.mp3", "title": "Bappa", "artist": "Banjo" }

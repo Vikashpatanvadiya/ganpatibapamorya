@@ -175,8 +175,9 @@
     return h ? `${h}:${String(m).padStart(2, "0")}:${sec}` : `${m}:${sec}`;
   };
 
+  // NFC matches how git/Vercel store accented file names (macOS disks often use NFD)
   const srcFor = (cat, track) =>
-    [CONFIG.songsBase, cat.folder, track.file].map(encodeURIComponent).join("/");
+    [CONFIG.songsBase, cat.folder, track.file].map((p) => encodeURIComponent(p.normalize("NFC"))).join("/");
 
   const current = () => {
     const cat = PLAYLIST[state.cat];

@@ -1,6 +1,8 @@
 // Rebuilds playlist.js from the Songs/ folders.
 // Keeps titles/artists you've already edited, adds new files with a guessed title,
 // drops files that no longer exist, and appends any new folder as a new category.
+// File names are written in Unicode NFC — the form git stores on macOS and the form
+// Linux hosts like Vercel serve — so names with accents (e.g. "ā") still load online.
 //
 //   node tools/sync-playlist.mjs
 
@@ -38,11 +40,11 @@ const buildTracks = (folder, known = []) => {
   // Existing order first, then new files alphabetically.
   const kept = known
     .filter((t) => onDisk.has(nfc(t.file)))
-    .map((t) => ({ ...t, file: onDisk.get(nfc(t.file)) }));
+    .map((t) => ({ ...t, file: nfc(onDisk.get(nfc(t.file))) }));
   const added = files
     .filter((f) => !byName.has(nfc(f)))
     .sort()
-    .map((f) => ({ file: f, title: guessTitle(f), artist: "" }));
+    .map((f) => ({ file: nfc(f), title: guessTitle(nfc(f)), artist: "" }));
   added.forEach((t) => console.log(`+ ${folder}/${t.file}`));
   known
     .filter((t) => !onDisk.has(nfc(t.file)))
