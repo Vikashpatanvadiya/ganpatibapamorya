@@ -64,8 +64,26 @@ window.PLAYLIST = [
     "blurb": "Non-stop, till the last round",
     "folder": "Garba",
     "tracks": [
-      { "file": "Ochhav  Non-Stop Gujarati Garba & Lok Geet 2023  Aditya Gadhvi.mp3", "title": "Ochhav: Non-Stop Garba & Lok Geet", "artist": "Aditya Gadhvi" },
-      { "file": "2_tali_ટહકર 9 -   NonStop Garba  Kirtidan Gadhvi.mp3", "title": "Tahukar 9: Non-Stop Garba", "artist": "Kirtidan Gadhvi" }
+      { "file": "ochhav-nonstop-garba-lok-geet.m4a", "title": "Ochhav: Non-Stop Garba & Lok Geet", "artist": "Aditya Gadhvi · 2 Taali" },
+      { "file": "tahukar-9.m4a", "title": "Tahukar 9: Non-Stop Garba", "artist": "Kirtidan Gadhvi · 2 Taali" },
+      { "file": "3-taali-2024-dj-vansda.m4a", "title": "3 Taali 2024 Non-Stop Garba", "artist": "DJ Vansda · 3 Taali" },
+      { "file": "rang-bhini-vol-1.m4a", "title": "Rang Bhini Vol. 1", "artist": "Non-Stop Garba · 3 Taali" },
+      { "file": "rang-rasiya.m4a", "title": "Rang Rasiya", "artist": "Kiran Gadhavi · 3 Taali" },
+      { "file": "dhol-na-dhabkare-part-2.m4a", "title": "Dhol Na Dhabkare, Part 2", "artist": "Non-Stop Garba" },
+      { "file": "dj-na-taal-2021.m4a", "title": "DJ Na Taal 2021", "artist": "Geeta Rabari" },
+      { "file": "taal-3-geeta-rabari.m4a", "title": "Taal 3.0", "artist": "Geeta Rabari" },
+      { "file": "geeta-rabari-ni-ramzat.m4a", "title": "Geeta Rabari Ni Ramzat", "artist": "Geeta Rabari" },
+      { "file": "haalo-re-khelaiya-part-1.m4a", "title": "Haalo Re Khelaiya, Part 1", "artist": "Non-Stop Garba" },
+      { "file": "khelaiya-1-hour-mix-dj-krit.m4a", "title": "Khelaiya: 1 Hour Non-Stop Mix", "artist": "DJ Krit" },
+      { "file": "mataji-special-navratri-2023.m4a", "title": "Mataji Special Navratri Garba 2023", "artist": "Gujarati Mix" },
+      { "file": "navratri-2024-dj-vansda.m4a", "title": "Navratri 2024 Special Garba Mix", "artist": "DJ Vansda" },
+      { "file": "tahukar-x-khelaiya-mix.m4a", "title": "Tahukar × Khelaiya Mix", "artist": "Kirtidan Gadhvi" },
+      { "file": "radhika-ras-ramva-aavje-re.m4a", "title": "Radhika Ras Ramva Aavje Re", "artist": "Jignesh Kaviraj · Tejal Thakor" },
+      { "file": "garba-mashup-2022.m4a", "title": "Garba Mashup 2022: Taal 2.0 × Tahukar 10", "artist": "Non-Stop Garba" },
+      { "file": "khelaiya-navratri-special.m4a", "title": "Khelaiya Navratri Special", "artist": "Non-Stop Garba" },
+      { "file": "tahukar-part-2.m4a", "title": "Tahukar, Part 2", "artist": "Kirtidan Gadhvi" },
+      { "file": "tahukar-part-7.m4a", "title": "Tahukar, Part 7", "artist": "Kirtidan Gadhvi" },
+      { "file": "jordar-dj-garba-2022.m4a", "title": "Jordar DJ Garba 2022", "artist": "Gaman Santhal · Kajal Maheriya" }
     ]
   },
   {

@@ -35,6 +35,14 @@ node tools/sync-playlist.mjs
 New files get a guessed title and an empty artist — tidy them in `playlist.js`.
 Existing titles, order, labels and blurbs are kept.
 
+**Long mixes (like Garba):** compress before adding — GitHub rejects files over 100MB and every
+listener downloads the whole file. Keep the original in `Songs-originals/` (not uploaded) and add a
+96 kbps copy with a short, plain file name:
+
+```bash
+ffmpeg -i "Songs-originals/Garba/Some Long Mix.mp3" -vn -map_metadata -1 -c:a aac -b:a 96k -ac 2 -movflags +faststart Songs/Garba/some-long-mix.m4a
+```
+
 ## Replacing the background
 
 `backgroundimage.png` is the source; the site loads the compressed copies in `assets/`.
